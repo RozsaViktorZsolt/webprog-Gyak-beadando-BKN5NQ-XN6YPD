@@ -1,6 +1,5 @@
 const API_URL = "http://localhost/fetchapi"; 
 
-// READ - Adatok betöltése és listázása
 async function loadItems() {
     try {
         const response = await fetch(`${API_URL}/get.php`);
@@ -30,7 +29,6 @@ async function loadItems() {
     }
 }
 
-// CREATE - Új elem hozzáadása
 async function addItem() {
     const name = document.getElementById("nameInput").value;
     const age = document.getElementById("ageInput").value;
@@ -47,14 +45,12 @@ async function addItem() {
         body: JSON.stringify({ name, age, skills })
     });
 
-    // Mezők ürítése
     document.getElementById("nameInput").value = "";
     document.getElementById("ageInput").value = "";
     document.getElementById("skillsInput").value = "";
     loadItems();
 }
 
-// UPDATE - Szerkesztő felület megjelenítése adatokkal feltöltve
 function showEdit(id, name, age, skills) {
     const container = document.getElementById("edit-container");
     if (container) {
@@ -63,12 +59,10 @@ function showEdit(id, name, age, skills) {
         document.getElementById("editName").value = name;
         document.getElementById("editAge").value = age;
         document.getElementById("editSkills").value = skills;
-        // Gördítsünk oda, hogy látszódjon a szerkesztő
         container.scrollIntoView();
     }
 }
 
-// UPDATE - Módosított adatok mentése
 async function updateItem() {
     const id = document.getElementById("editId").value;
     const name = document.getElementById("editName").value;
@@ -90,12 +84,10 @@ async function updateItem() {
     loadItems();
 }
 
-// Szerkesztés megszakítása
 function cancelEdit() {
     document.getElementById("edit-container").style.display = "none";
 }
 
-// DELETE - Törlés
 async function deleteItem(id) {
     if (!confirm("Biztosan törölni szeretné ezt az elemet?")) return;
     
@@ -108,5 +100,4 @@ async function deleteItem(id) {
     loadItems();
 }
 
-// Kezdő betöltés
 loadItems();
