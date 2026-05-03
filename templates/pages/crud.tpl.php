@@ -16,9 +16,9 @@
         <td><?= $sor['eletkor'] ?></td>
         <td><?= htmlspecialchars($sor['csapat']) ?></td>
         <td>
-            <a href="index.php?oldal=crud_edit&id=<?= $sor['id'] ?>">Edit</a>
-            <a href="index.php?oldal=crud_del&id=<?= $sor['id'] ?>">Delete</a>
-        </td>
+    <a href="index.php?oldal=crud_szerkeszt&id=<?= $sor['id'] ?>" class="btn-edit">Edit</a>
+    <a href="index.php?oldal=crud_torol&id=<?= $sor['id'] ?>" class="btn-delete" onclick="return confirm('Biztosan törlöd?')">Delete</a>
+</td>
     </tr>
     <?php endwhile; ?>
 </table>
