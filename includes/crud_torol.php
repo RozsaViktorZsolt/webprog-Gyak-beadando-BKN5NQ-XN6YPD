@@ -1,5 +1,4 @@
 <?php
-// includes/crud_torol.php
 if (isset($_GET['id'])) {
     $id = (int)$_GET['id'];
     try {
@@ -7,7 +6,6 @@ if (isset($_GET['id'])) {
         $stmt = $dbh->prepare($sql);
         $stmt->execute([':id' => $id]);
         
-        // Törlés után visszaugrunk a CRUD listához
         header("Location: index.php?oldal=crud");
         exit;
     } catch (PDOException $e) {
