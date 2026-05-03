@@ -4,7 +4,7 @@
 <div class="media-container">
     <h3>Videók</h3>
     <video width="320" height="240" controls>
-        <source src="video/sajat_video.mp4" type="video/mp4">
+        <source src="images/sajat_video.mp4" type="video/mp4">
     </video>
 
     <iframe width="560" height="315" src="https://www.youtube.com/embed/83GJM1S0FnE" frameborder="0" allowfullscreen></iframe>
