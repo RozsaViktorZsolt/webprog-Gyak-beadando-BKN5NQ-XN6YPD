@@ -7,7 +7,7 @@ $email = trim($_POST['email']);
 $targy = trim($_POST['targy']);
 $szoveg = trim($_POST['szoveg']);
 
-// Szerveroldali validáció
+
 if(strlen($nev) < 3) $hibak[] = "Érvénytelen név!";
 if(!filter_var($email, FILTER_VALIDATE_EMAIL)) $hibak[] = "Érvénytelen e-mail!";
 if(empty($targy)) $hibak[] = "Hiányzó tárgy!";
@@ -17,7 +17,7 @@ if(empty($hibak)) {
     try {
         $sql = "INSERT INTO uzenetek (bejelentkezett_id, nev, email, targy, szoveg) VALUES (:bid, :nev, :email, :targy, :szoveg)";
         $stmt = $dbh->prepare($sql);
-        // Ha be van lépve, elmentjük az ID-t
+        
         $bid = null; 
         if(isset($_SESSION['login'])) {
             $s = $dbh->prepare("SELECT id FROM felhasznalok WHERE bejelentkezes = ?");
