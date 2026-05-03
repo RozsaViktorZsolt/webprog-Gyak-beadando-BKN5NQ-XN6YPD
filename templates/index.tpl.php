@@ -38,5 +38,6 @@
     <footer>
         <p>&copy; 2026 - Készítette: Rózsa Viktor Zsolt & Vass Zoltán</p>
     </footer>
+    <script src="./js/validacio.js"></script>
 </body>
 </html>
