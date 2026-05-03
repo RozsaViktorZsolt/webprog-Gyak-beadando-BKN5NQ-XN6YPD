@@ -12,3 +12,14 @@ main { padding: 20px; min-height: 400px; }
     nav ul { flex-direction: column; }
     nav li { width: 100%; }
 }
+
+.video-container, .sajat-video, .map-container {
+    margin: 20px 0;
+    text-align: center;
+}
+
+iframe, video {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
