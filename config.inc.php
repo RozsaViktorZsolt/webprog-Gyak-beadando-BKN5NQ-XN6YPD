@@ -1,11 +1,4 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-include('./config.inc.php');
-include('./includes/db.inc.php');
-session_start();
-
-include('./templates/index.tpl.php');
 $oldalak = array(
     'fooldal' => array('fajl' => 'fooldal', 'szoveg' => 'Főoldal', 'menun' => array(1,1)),
     'kepek' => array('fajl' => 'kepek', 'szoveg' => 'Képek', 'menun' => array(1,1)),
