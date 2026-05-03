@@ -1,25 +1,16 @@
-<form action="?oldal=kapcsolat_mentes" method="post" onsubmit="return validateContact();">
-    Név: <input type="text" name="nev" id="nev_id"><br>
-    Email: <input type="text" name="email" id="email_id"><br>
-    Üzenet: <textarea name="szoveg" id="szoveg_id"></textarea><br>
-    <input type="submit" value="Küldés">
+<form id="kapcsolatForm" action="index.php?oldal=kapcsolat_kuld" method="post">
+    Név: <input type="text" name="nev" id="nev">
+    E-mail: <input type="text" name="email" id="email">
+    Üzenet: <textarea name="uzenet" id="uzenet"></textarea>
+    <button type="submit">Küldés</button>
 </form>
 
 <script>
-function validateContact() {
-    let nev = document.getElementById('nev_id').value;
-    let email = document.getElementById('email_id').value;
-    let uzenet = document.getElementById('szoveg_id').value;
-    let errors = [];
-
-    if(nev.length < 3) errors.push("A név túl rövid!");
-    if(!email.includes("@")) errors.push("Érvénytelen email cím!");
-    if(uzenet.trim() == "") errors.push("Az üzenet nem lehet üres!");
-
-    if(errors.length > 0) {
-        alert(errors.join("\n"));
-        return false;
+document.getElementById('kapcsolatForm').onsubmit = function(e) {
+    let nev = document.getElementById('nev').value;
+    if(nev.length < 3) {
+        alert("A név túl rövid!");
+        e.preventDefault();
     }
-    return true;
-}
+};
 </script>
