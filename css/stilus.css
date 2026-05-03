@@ -1,26 +1,14 @@
-/* Alap vízszintes menü */
-nav ul {
-    list-style: none;
-    display: flex;
-    background-color: #333;
-    padding: 0;
-}
+* { box-sizing: border-box; }
+body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+header, footer { background-color: #333; color: white; text-align: center; padding: 1em; }
+nav { background-color: #444; }
+nav ul { list-style-type: none; margin: 0; padding: 0; overflow: hidden; display: flex; flex-wrap: wrap; }
+nav li { float: left; }
+nav li a { display: block; color: white; text-align: center; padding: 14px 16px; text-decoration: none; }
+nav li a:hover, nav li.active a { background-color: #111; }
+main { padding: 20px; min-height: 400px; }
 
-nav ul li a {
-    color: white;
-    padding: 15px 20px;
-    display: block;
-    text-decoration: none;
-}
-
-/* Reszponzív beállítás: mobilon egymás alá kerülnek a menüpontok */
 @media screen and (max-width: 600px) {
-    nav ul {
-        flex-direction: column;
-    }
-    
-    table {
-        display: block;
-        overflow-x: auto; /* A táblázat görgethető legyen mobilon */
-    }
+    nav ul { flex-direction: column; }
+    nav li { width: 100%; }
 }
