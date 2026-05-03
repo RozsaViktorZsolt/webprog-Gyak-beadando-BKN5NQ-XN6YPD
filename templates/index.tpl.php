@@ -8,11 +8,11 @@
 </head>
 <body>
     <header>
-        <div class="user-info">
-            <?php if(isset($_SESSION['login'])): ?>
-                <p>Bejelentkezett: <?= $_SESSION['csn']." ".$_SESSION['un']." (".$_SESSION['login'].")" ?></p>
-            <?php endif; ?>
-        </div>
+        <div id="user-bar">
+        <?php if(isset($_SESSION['login'])): ?>
+            <p>Bejelentkezett: <?= $_SESSION['csn'] . " " . $_SESSION['un'] . " (" . $_SESSION['login'] . ")" ?></p>
+        <?php endif; ?>
+    </div>
         <nav>
             <ul class="nav-list">
                 <?php foreach ($oldalak as $ut => $adat): 
