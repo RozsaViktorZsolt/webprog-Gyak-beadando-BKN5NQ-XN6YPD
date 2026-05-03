@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Gép: 127.0.0.1
--- Létrehozás ideje: 2026. Ápr 12. 16:39
--- Kiszolgáló verziója: 10.4.32-MariaDB
--- PHP verzió: 8.2.12
+-- Gép: mysql.omega:3306
+-- Létrehozás ideje: 2026. Máj 03. 14:30
+-- Kiszolgáló verziója: 5.7.42-log
+-- PHP verzió: 7.2.34-61+0~20260213.113+debian12~1.gbp7055a0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Adatbázis: `forma 1`
+-- Adatbázis: `forma_1gyak`
 --
 
 -- --------------------------------------------------------
@@ -36,7 +36,21 @@ CREATE TABLE `eredmeny` (
   `csapat` varchar(100) DEFAULT NULL,
   `tipus` varchar(100) DEFAULT NULL,
   `motor` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `felhasznalok`
+--
+
+CREATE TABLE `felhasznalok` (
+  `id` int(11) NOT NULL,
+  `csaladi_nev` varchar(45) COLLATE utf8_hungarian_ci NOT NULL,
+  `uto_nev` varchar(45) COLLATE utf8_hungarian_ci NOT NULL,
+  `bejelentkezes` varchar(45) COLLATE utf8_hungarian_ci NOT NULL,
+  `jelszo` varchar(255) COLLATE utf8_hungarian_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 -- --------------------------------------------------------
 
@@ -48,7 +62,7 @@ CREATE TABLE `gp` (
   `datum` date NOT NULL,
   `nev` varchar(100) NOT NULL,
   `helyszin` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- A tábla adatainak kiíratása `gp`
@@ -805,7 +819,7 @@ CREATE TABLE `pilota` (
   `nem` char(1) DEFAULT NULL,
   `szuldat` date DEFAULT NULL,
   `nemzet` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- A tábla adatainak kiíratása `pilota`
@@ -1605,6 +1619,22 @@ INSERT INTO `pilota` (`az`, `nev`, `nem`, `szuldat`, `nemzet`) VALUES
 (800, 'Jim Rathmann', 'F', '1928-07-16', 'amerikai'),
 (801, 'Johnny Mantz', 'F', '1918-09-18', 'amerikai');
 
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `uzenetek`
+--
+
+CREATE TABLE `uzenetek` (
+  `id` int(11) NOT NULL,
+  `bejelentkezett_id` int(11) DEFAULT NULL,
+  `nev` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
+  `email` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
+  `targy` varchar(255) COLLATE utf8_hungarian_ci NOT NULL,
+  `szoveg` text COLLATE utf8_hungarian_ci NOT NULL,
+  `idopont` datetime DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
 --
 -- Indexek a kiírt táblákhoz
 --
@@ -1616,6 +1646,13 @@ ALTER TABLE `eredmeny`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_eredmeny_pilota` (`pilotaaz`),
   ADD KEY `fk_eredmeny_gp` (`datum`);
+
+--
+-- A tábla indexei `felhasznalok`
+--
+ALTER TABLE `felhasznalok`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `bejelentkezes_UNIQUE` (`bejelentkezes`);
 
 --
 -- A tábla indexei `gp`
@@ -1630,6 +1667,13 @@ ALTER TABLE `pilota`
   ADD PRIMARY KEY (`az`);
 
 --
+-- A tábla indexei `uzenetek`
+--
+ALTER TABLE `uzenetek`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `bejelentkezett_id` (`bejelentkezett_id`);
+
+--
 -- A kiírt táblák AUTO_INCREMENT értéke
 --
 
@@ -1638,6 +1682,18 @@ ALTER TABLE `pilota`
 --
 ALTER TABLE `eredmeny`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=196012;
+
+--
+-- AUTO_INCREMENT a táblához `felhasznalok`
+--
+ALTER TABLE `felhasznalok`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT a táblához `uzenetek`
+--
+ALTER TABLE `uzenetek`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Megkötések a kiírt táblákhoz
@@ -1651,6 +1707,12 @@ ALTER TABLE `eredmeny`
   ADD CONSTRAINT `eredmeny_ibfk_2` FOREIGN KEY (`pilotaaz`) REFERENCES `pilota` (`az`),
   ADD CONSTRAINT `fk_eredmeny_gp` FOREIGN KEY (`datum`) REFERENCES `gp` (`datum`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_eredmeny_pilota` FOREIGN KEY (`pilotaaz`) REFERENCES `pilota` (`az`) ON UPDATE CASCADE;
+
+--
+-- Megkötések a táblához `uzenetek`
+--
+ALTER TABLE `uzenetek`
+  ADD CONSTRAINT `uzenetek_ibfk_1` FOREIGN KEY (`bejelentkezett_id`) REFERENCES `felhasznalok` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
