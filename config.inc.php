@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 include('./config.inc.php');
 include('./includes/db.inc.php');
 session_start();
