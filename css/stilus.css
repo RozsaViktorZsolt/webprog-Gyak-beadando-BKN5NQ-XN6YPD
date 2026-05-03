@@ -1,1 +1,26 @@
+/* Alap vízszintes menü */
+nav ul {
+    list-style: none;
+    display: flex;
+    background-color: #333;
+    padding: 0;
+}
 
+nav ul li a {
+    color: white;
+    padding: 15px 20px;
+    display: block;
+    text-decoration: none;
+}
+
+/* Reszponzív beállítás: mobilon egymás alá kerülnek a menüpontok */
+@media screen and (max-width: 600px) {
+    nav ul {
+        flex-direction: column;
+    }
+    
+    table {
+        display: block;
+        overflow-x: auto; /* A táblázat görgethető legyen mobilon */
+    }
+}
