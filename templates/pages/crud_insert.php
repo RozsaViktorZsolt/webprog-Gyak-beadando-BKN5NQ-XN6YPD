@@ -1,16 +1,9 @@
 <?php
-// includes/crud_insert.php
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $nev = $_POST['nev'];
-    $eletkor = $_POST['eletkor'];
-    $csapat = $_POST['csapat'];
-    $varos = $_POST['varos'];
-
-    $sql = "INSERT INTO versenyzok (nev, eletkor, csapat, varos) VALUES (?, ?, ?, ?)";
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id'])) {
+    $sql = "UPDATE versenyzok SET nev = ?, csapat = ?, eletkor = ? WHERE id = ?";
     $stmt = $dbh->prepare($sql);
-    $stmt->execute([$nev, $eletkor, $csapat, $varos]);
-
+    $stmt->execute([$_POST['nev'], $_POST['csapat'], $_POST['eletkor'], $_POST['id']]);
+    
     header("Location: index.php?oldal=crud");
-    exit;
 }
 ?>
