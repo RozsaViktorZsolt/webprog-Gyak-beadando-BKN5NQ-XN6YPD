@@ -1,6 +1,12 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 session_start();
-include('./includes/config.inc.php');
+include('./config.inc.php');
+include('./includes/db.inc.php');
+session_start();
+// ... az oldalválasztó logika helye ...
+include('./templates/index.tpl.php');
 $keres = $oldalak['home'];
 if (isset($_GET['oldal'])) {
     if (isset($oldalak[$_GET['oldal']]) && file_exists("./templates/pages/{$oldalak[$_GET['oldal']]['fajl']}.tpl.php")) {
