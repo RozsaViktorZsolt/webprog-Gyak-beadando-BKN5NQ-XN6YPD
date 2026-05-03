@@ -1,14 +1,15 @@
 <?php
-// index.php
-session_start();
-require_once('./includes/db.inc.php');
-require_once('./config.inc.php');
+include('./includes/config.inc.php');
 
-$oldal = isset($_GET['oldal']) ? $_GET['oldal'] : 'fooldal';
-if (!isset($oldalak[$oldal])) {
-    $oldal = 'fooldal';
+$keres = $oldalak['home'];
+if (isset($_GET['oldal'])) {
+    if (isset($oldalak[$_GET['oldal']]) && file_exists("./templates/pages/{$oldalak[$_GET['oldal']]['fajl']}.tpl.php")) {
+        $keres = $oldalak[$_GET['oldal']];
+    } else {
+        $keres = $hiba_oldal;
+        header("HTTP/1.0 404 Not Found");
+    }
 }
-$keresett_oldal = $oldalak[$oldal];
 
-include('./templates/index.tpl.php');
+include('./templates/main.tpl.php');
 ?>
