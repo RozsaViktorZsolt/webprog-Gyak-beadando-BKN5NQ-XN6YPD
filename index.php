@@ -1,19 +1,25 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-include('./config.inc.php');
-include('./includes/db.inc.php');
-session_start();
-// ... az oldalválasztó logika helye ...
-include('./templates/index.tpl.php');
-$keres = $oldalak['home'];
-if (isset($_GET['oldal'])) {
-    if (isset($oldalak[$_GET['oldal']]) && file_exists("./templates/pages/{$oldalak[$_GET['oldal']]['fajl']}.tpl.php")) {
-        $keres = $oldalak[$_GET['oldal']];
-    } else {
-        $keres = $hiba_oldal;
-        header("HTTP/1.0 404 Not Found");
-    }
+session_start(); 
+include('config.inc.php');
+include(dirname(__FILE__) . '/includes/db.inc.php');
+
+if (isset($oldalak)) {
+    echo "<!-- DEBUG: A tömb sikeresen betöltve -->";
+} else {
+    echo "<h1 style='color:red;'>HIBA: A config.inc.php továbbra sem töltődött be!</h1>";
 }
+
+$oldal = isset($_GET['oldal']) ? $_GET['oldal'] : 'fooldal';
+
+if (isset($oldalak[$oldal])) {
+    $keresett_oldal = $oldalak[$oldal];
+} else {
+    $keresett_oldal = $oldalak['fooldal'];
+}
+
+if (!isset($keresett_oldal['fajl']) || empty($keresett_oldal['fajl'])) {
+    $keresett_oldal['fajl'] = 'home'; 
+}
+
 include('./templates/index.tpl.php');
 ?>
