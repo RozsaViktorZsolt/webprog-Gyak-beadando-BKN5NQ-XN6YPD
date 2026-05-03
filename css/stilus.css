@@ -23,3 +23,33 @@ iframe, video {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
+
+.upload-section {
+    background-color: #f4f4f4;
+    padding: 15px;
+    margin-bottom: 30px;
+    border-radius: 5px;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.kep-kartya {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    width: 250px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.kep-kartya img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 3px;
+}
