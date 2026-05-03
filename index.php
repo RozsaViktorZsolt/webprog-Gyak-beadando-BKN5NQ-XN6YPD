@@ -11,5 +11,5 @@ if (isset($_GET['oldal'])) {
     }
 }
 
-include('./templates/main.tpl.php');
+include('./templates/index.tpl.php');
 ?>
