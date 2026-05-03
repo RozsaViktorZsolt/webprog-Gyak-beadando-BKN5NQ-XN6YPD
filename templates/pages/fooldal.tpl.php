@@ -12,5 +12,5 @@
 
 <div class="map-container">
     <h3>Irodánk helyszíne</h3>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2758.823485093556!2d20.1437142!3d46.2536835!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x474487e07662c57b%3A0xc07a83d4c3898144!2sSzeged!5e0!3m2!1shu!2shu!4v1700000000000" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    <iframe src="https://www.google.com/maps/place/NJE+GAMF+Kar+Alaptudományi+Tanszék/@46.8951633,19.6651171,17z/data=!3m1!4b1!4m6!3m5!1s0x4743da7759d88a69:0xba0af93cdfb3fbe2!8m2!3d46.8951597!4d19.667692!16s%2Fg%2F11cly5gsw5?authuser=0&entry=ttu&g_ep=EgoyMDI2MDQyOS4wIKXMDSoASAFQAw%3D%3D" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
 </div>
