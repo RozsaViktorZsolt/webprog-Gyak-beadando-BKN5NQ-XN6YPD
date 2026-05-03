@@ -2,20 +2,47 @@
 body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
 header, footer { background-color: #333; color: white; text-align: center; padding: 1em; }
 nav { background-color: #444; }
-nav ul { list-style-type: none; margin: 0; padding: 0; overflow: hidden; display: flex; flex-wrap: wrap; }
-nav li { float: left; }
-nav li a { display: block; color: white; text-align: center; padding: 14px 16px; text-decoration: none; }
-nav li a:hover, nav li.active a { background-color: #111; }
+/* Navigációs lista javítása */
+nav ul { 
+    list-style-type: none; 
+    margin: 0; 
+    padding: 0; 
+    display: flex; 
+    flex-wrap: wrap; 
+    background-color: #333; /* Egységes sötét háttér */
+}
+
+/* Float törlése, Flexbox használata */
+nav li { 
+    width: auto; 
+}
+
+nav li a { 
+    display: block; 
+    color: white; 
+    text-align: center; 
+    padding: 14px 20px; /* Kicsit szélesebb kattintási felület */
+    text-decoration: none; 
+    transition: background-color 0.3s; /* Lágyabb váltás hovernél */
+}
+
+/* Aktív oldal és Hover stílus */
+nav li a:hover, nav li.active a { 
+    background-color: #111; 
+}
+
+.video-container, .map-container {
+    display: inline-block;
+    vertical-align: top;
+    margin: 10px;
+    width: 45%;
+    min-width: 300px;
+}
 main { padding: 20px; min-height: 400px; }
 
 @media screen and (max-width: 600px) {
     nav ul { flex-direction: column; }
     nav li { width: 100%; }
-}
-
-.video-container, .sajat-video, .map-container {
-    margin: 20px 0;
-    text-align: center;
 }
 
 iframe, video {
