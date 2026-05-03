@@ -1,7 +1,6 @@
 <?php
 session_start();
 include('./includes/config.inc.php');
-
 $keres = $oldalak['home'];
 if (isset($_GET['oldal'])) {
     if (isset($oldalak[$_GET['oldal']]) && file_exists("./templates/pages/{$oldalak[$_GET['oldal']]['fajl']}.tpl.php")) {
@@ -11,6 +10,5 @@ if (isset($_GET['oldal'])) {
         header("HTTP/1.0 404 Not Found");
     }
 }
-
 include('./templates/index.tpl.php');
 ?>
