@@ -7,7 +7,7 @@
         <source src="video/sajat_video.mp4" type="video/mp4">
     </video>
 
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://youtu.be/83GJM1S0FnE?si=eazt9zbssQGIp8ii" frameborder="0" allowfullscreen></iframe>
 </div>
 
 <div class="map-container">
