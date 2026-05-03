@@ -1,4 +1,9 @@
 <?php
+include('./includes/config.inc.php');
+include('./includes/db.inc.php');
+session_start();
+
+include('./templates/index.tpl.php');
 $oldalak = array(
     'fooldal' => array('fajl' => 'fooldal', 'szoveg' => 'Főoldal', 'menun' => array(1,1)),
     'kepek' => array('fajl' => 'kepek', 'szoveg' => 'Képek', 'menun' => array(1,1)),
