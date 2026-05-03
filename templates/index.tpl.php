@@ -7,24 +7,22 @@
     <link rel="stylesheet" href="./css/stilus.css">
 </head>
 <body>
-    <header>
-        <div id="user-bar">
+   <header>
+    <div class="user-bar">
         <?php if(isset($_SESSION['login'])): ?>
-            <p>Bejelentkezett: <?= $_SESSION['csn'] . " " . $_SESSION['un'] . " (" . $_SESSION['login'] . ")" ?></p>
+            <p>Bejelentkezett: <?= htmlspecialchars($_SESSION['csn'] . " " . $_SESSION['un'] . " (" . $_SESSION['login'] . ")") ?></p>
         <?php endif; ?>
     </div>
-        <nav>
-            <ul class="nav-list">
-                <?php foreach ($oldalak as $ut => $adat): 
-                   
-                    if (($adat['menun'][0] && !isset($_SESSION['login'])) || 
-                        ($adat['menun'][1] && isset($_SESSION['login']))): ?>
-                        <li><a href="index.php?oldal=<?= $ut ?>" <?= ($oldal == $ut) ? 'class="active"' : '' ?>><?= $adat['szoveg'] ?></a></li>
-                    <?php endif; 
-                endforeach; ?>
-            </ul>
-        </nav>
-    </header>
+    <nav>
+        <ul class="navbar">
+            <?php foreach ($oldalak as $ut => $adat): ?>
+                <?php if (($adat['menun'][0] && !isset($_SESSION['login'])) || ($adat['menun'][1] && isset($_SESSION['login']))): ?>
+                    <li><a href="index.php?oldal=<?= $ut ?>" <?= ($oldal == $ut) ? 'class="active"' : '' ?>><?= $adat['szoveg'] ?></a></li>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </ul>
+    </nav>
+</header>
 
     <main>
         <?php 
