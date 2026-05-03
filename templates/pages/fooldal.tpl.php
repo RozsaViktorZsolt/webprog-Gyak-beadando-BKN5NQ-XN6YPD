@@ -7,10 +7,10 @@
         <source src="video/sajat_video.mp4" type="video/mp4">
     </video>
 
-    <iframe width="560" height="315" src="https://youtu.be/83GJM1S0FnE?si=eazt9zbssQGIp8ii" frameborder="0" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/83GJM1S0FnE" frameborder="0" allowfullscreen></iframe>
 </div>
 
 <div class="map-container">
     <h3>Irodánk helyszíne</h3>
-    <iframe src="https://www.google.com/maps/place/NJE+GAMF+Kar+Alaptudományi+Tanszék/@46.8951633,19.6651171,17z/data=!3m1!4b1!4m6!3m5!1s0x4743da7759d88a69:0xba0af93cdfb3fbe2!8m2!3d46.8951597!4d19.667692!16s%2Fg%2F11cly5gsw5?authuser=0&entry=ttu&g_ep=EgoyMDI2MDQyOS4wIKXMDSoASAFQAw%3D%3D" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2726.384131388507!2d19.665117076724563!3d46.89516333683393!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4743da7759d88a69%3A0xba0af93cdfb3fbe2!2sNJE%20GAMF%20Kar%20Alaptudom%C3%A1nyi%20Tansz%C3%A9k!5e0!3m2!1shu!2shu!4v1777814028918!5m2!1shu!2shu" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 </div>
