@@ -1,41 +1,29 @@
 <?php
-if(isset($_POST['felhasznalo']) && isset($_POST['jelszo']) && isset($_POST['csaladi_nev']) && isset($_POST['uto_nev'])) {
+if(isset($_POST['user']) && isset($_POST['pw']) && isset($_POST['csnev']) && isset($_POST['unev'])) {
     require_once('db.php');
     try {
-        $sqlSelect = "select id from felhasznalok where bejelentkezes = :bejelentkezes";
+        $sqlSelect = "SELECT id FROM felhasznalok WHERE bejelentkezes = :login";
         $sth = $dbh->prepare($sqlSelect);
-        $sth->execute(array(':bejelentkezes' => $_POST['felhasznalo']));
+        $sth->execute(array(':login' => $_POST['user']));
+        
         if($row = $sth->fetch(PDO::FETCH_ASSOC)) {
             $uzenet = "A felhasználónév már foglalt!";
-            $ujra = true;
-        }
-        else {
-            $sqlInsert = "insert into felhasznalok(id, csaladi_nev, uto_nev, bejelentkezes, jelszo)
-                          values(0, :csaladi_nev, :uto_nev, :bejelentkezes, :jelszo)";
+        } else {
+            $sqlInsert = "INSERT INTO felhasznalok(csaladi_nev, uto_nev, bejelentkezes, jelszo) 
+                          VALUES(:csnev, :unev, :login, :pw)";
             $stmt = $dbh->prepare($sqlInsert); 
-            $stmt->execute(array(':csaladi_nev' => $_POST['csaladi_nev'], ':uto_nev' => $_POST['uto_nev'],
-                                 ':bejelentkezes' => $_POST['felhasznalo'], ':jelszo' => password_hash($_POST['jelszo'], PASSWORD_DEFAULT))); 
-            if($count = $stmt->rowCount()) {
-                $uzenet = "Sikeres regisztráció! Most már bejelentkezhet.";
-                $ujra = false;
-            }
-            else {
-                $uzenet = "Sikertelen regisztráció!";
-                $ujra = true;
-            }
+            $stmt->execute(array(
+                ':csnev' => $_POST['csnev'], 
+                ':unev' => $_POST['unev'],
+                ':login' => $_POST['user'], 
+                ':pw' => password_hash($_POST['pw'], PASSWORD_DEFAULT)
+            )); 
+            $uzenet = "Sikeres regisztráció! Most már bejelentkezhet.";
         }
-    }
-    catch (PDOException $e) {
-        $uzenet = "Hiba: ".$e->getMessage();
-        $ujra = true;
+    } catch (PDOException $e) {
+        $uzenet = "Hiba történt: " . $e->getMessage();
     }      
 }
-else {
-    header("Location: .");
-}
 ?>
-
 <h3><?= $uzenet ?></h3>
-<?php if($ujra) { ?>
-    <a href="?oldal=belepes">Próbálja újra!</a>
-<?php } ?>
+<a href="?oldal=belepes">Vissza a belépéshez</a>
