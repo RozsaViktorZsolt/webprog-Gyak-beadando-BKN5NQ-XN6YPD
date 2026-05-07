@@ -1,6 +1,6 @@
 <?php
 $host = 'localhost'; 
-$dbname = 'forma1_gyak'; 
+$dbname = 'forma_1gyak'; 
 $user = 'forma_1gyak'; 
 $password = 'webprog12.'; 
 
