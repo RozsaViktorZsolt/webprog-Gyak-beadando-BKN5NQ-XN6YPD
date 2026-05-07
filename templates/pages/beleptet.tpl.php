@@ -1,16 +1,27 @@
-<h2>Bejelentkezés</h2>
-<form action="index.php?oldal=beleptet" method="post">
-    <input type="text" name="felhasznalo" placeholder="Felhasználónév" required><br><br>
-    <input type="password" name="jelszo" placeholder="Jelszó" required><br><br>
-    <button type="submit">Belépés</button>
-</form>
+<?php
+if(isset($_POST['user']) && isset($_POST['pw'])) {
+    require_once('db.php');
+    try {
+        $sqlSelect = "SELECT id, csaladi_nev, uto_nev, jelszo FROM felhasznalok WHERE bejelentkezes = :login";
+        $sth = $dbh->prepare($sqlSelect);
+        $sth->execute(array(':login' => $_POST['user']));
+        $row = $sth->fetch(PDO::FETCH_ASSOC);
 
-<hr>
-<h2>Regisztráció</h2>
-<form action="index.php?oldal=regisztral" method="post">
-    <input type="text" name="csn" placeholder="Családi név" required><br><br>
-    <input type="text" name="un" placeholder="Utónév" required><br><br>
-    <input type="text" name="login" placeholder="Felhasználónév" required><br><br>
-    <input type="password" name="pw" placeholder="Jelszó" required><br><br>
-    <button type="submit">Regisztráció</button>
-</form>
+        if($row && password_verify($_POST['pw'], $row['jelszo'])) {
+            $_SESSION['csaladi_nev'] = $row['csaladi_nev'];
+            $_SESSION['uto_nev'] = $row['uto_nev'];
+            $_SESSION['login'] = $_POST['user'];
+            $uzenet = "Üdvözöljük, " . $row['csaladi_nev'] . " " . $row['uto_nev'] . "!";
+            header("Refresh: 2; url=.");
+        } else {
+            $uzenet = "Hibás felhasználónév vagy jelszó!";
+        }
+    } catch (PDOException $e) {
+        $uzenet = "Hiba: " . $e->getMessage();
+    }      
+}
+?>
+<h3><?= $uzenet ?></h3>
+<?php if(!isset($_SESSION['login'])) : ?>
+    <a href="?oldal=belepes">Próbálja újra</a>
+<?php endif; ?>
