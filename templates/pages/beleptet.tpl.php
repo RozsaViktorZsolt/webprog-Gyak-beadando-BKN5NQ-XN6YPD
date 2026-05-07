@@ -1,6 +1,6 @@
 <?php
 if(isset($_POST['user']) && isset($_POST['pw'])) {
-    require_once('db.php');
+    // Nem kell require, mert az index.php már betöltötte a $dbh-t
     try {
         $sqlSelect = "SELECT id, csaladi_nev, uto_nev, jelszo FROM felhasznalok WHERE bejelentkezes = :login";
         $sth = $dbh->prepare($sqlSelect);
@@ -23,5 +23,5 @@ if(isset($_POST['user']) && isset($_POST['pw'])) {
 ?>
 <h3><?= $uzenet ?></h3>
 <?php if(!isset($_SESSION['login'])) : ?>
-    <a href="?oldal=belepes">Próbálja újra</a>
+    <a href="?oldal=bejelentkezes">Próbálja újra</a>
 <?php endif; ?>
