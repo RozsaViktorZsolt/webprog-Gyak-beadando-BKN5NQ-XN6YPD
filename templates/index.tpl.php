@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Webprog Projekt - BKN5NQ, XN6JPD</title>
-    <!-- Fontos: Ellenőrizd, hogy a Bootstrap vagy a saját CSS-ed nem rejti-e el a listát -->
     <link rel="stylesheet" href="./css/stilus.css">
 </head>
 <body>
     <header>
         <div class="user-bar">
             <?php if(isset($_SESSION['login'])): ?>
-                <p>Bejelentkezett: <?= htmlspecialchars($_SESSION['csn'] . " " . $_SESSION['un'] . " (" . $_SESSION['login'] . ")") ?></p>
+                <p>Bejelentkezett: <strong><?= htmlspecialchars($_SESSION['csaladi_nev'] . " " . $_SESSION['uto_nev'] . " (" . $_SESSION['login'] . ")") ?></strong></p>
             <?php endif; ?>
         </div>
 
@@ -19,8 +18,16 @@
             <div class="container-fluid">
                 <ul class="nav navbar-nav">
                     <?php foreach ($oldalak as $kod => $oldal): ?>
-                        <?php if ($oldal['menun'][0]): // Megjelenítés, ha az első érték nem 0 ?>
-                            <li <?= ($kod == $oldal['fajl'] || (isset($_GET['oldal']) && $_GET['oldal'] == $kod)) ? 'class="active"' : '' ?>>
+                        <?php 
+                            // Menü megjelenítése a bejelentkezési állapot alapján
+                            // menun[0] -> látható, ha nincs belépve
+                            // menun[1] -> látható, ha be van lépve
+                            $lathato = (!isset($_SESSION['login']) && $oldal['menun'][0]) || 
+                                       (isset($_SESSION['login']) && $oldal['menun'][1]);
+                            
+                            if ($lathato): 
+                        ?>
+                            <li <?= (isset($_GET['oldal']) && $_GET['oldal'] == $kod) ? 'class="active"' : '' ?>>
                                 <a href="index.php?oldal=<?= $kod ?>">
                                     <?= $oldal['szoveg'] ?>
                                 </a>
@@ -45,7 +52,7 @@
     </main>
 
     <footer>
-        <p>&copy; 2026 - Készítette: Rózsa Viktor Zsolt & Vass Zoltán</p>
+        <p>&copy; <?= date('Y') ?> - Készítette: Rózsa Viktor Zsolt & Vass Zoltán</p>
     </footer>
     <script src="./js/validacio.js"></script>
 </body>
