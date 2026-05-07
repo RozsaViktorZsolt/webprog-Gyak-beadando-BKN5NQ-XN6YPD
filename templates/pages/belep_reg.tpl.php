@@ -1,23 +1,23 @@
-<section class="auth-container">
-    <div class="login-box">
+<div class="auth-wrapper">
+    <section class="login-section">
         <h2>Bejelentkezés</h2>
         <form action="?oldal=beleptet" method="post">
-            <input type="text" name="felhasznalo" placeholder="Felhasználónév" required>
-            <input type="password" name="jelszo" placeholder="Jelszó" required>
+            <input type="text" name="user" placeholder="Felhasználónév" required>
+            <input type="password" name="pw" placeholder="Jelszó" required>
             <button type="submit">Belépés</button>
         </form>
-    </div>
+    </section>
 
     <hr>
 
-    <div class="register-box">
+    <section class="register-section">
         <h2>Regisztráció</h2>
         <form action="?oldal=regisztral" method="post">
-            <input type="text" name="csaladi_nev" placeholder="Családi név" required>
-            <input type="text" name="uto_nev" placeholder="Utónév" required>
-            <input type="text" name="felhasznalo" placeholder="Felhasználónév (Login)" required>
-            <input type="password" name="jelszo" placeholder="Jelszó" required>
+            <input type="text" name="csnev" placeholder="Családi név" required>
+            <input type="text" name="unev" placeholder="Utónév" required>
+            <input type="text" name="user" placeholder="Felhasználónév" required>
+            <input type="password" name="pw" placeholder="Jelszó" required>
             <button type="submit">Regisztráció</button>
         </form>
-    </div>
-</section>
+    </section>
+</div>
