@@ -5,7 +5,7 @@ $oldalak = array(
     'kapcsolat'    => array('fajl' => 'kapcsolat', 'szoveg' => 'Kapcsolat', 'menun' => array(1,1)),
     'crud'         => array('fajl' => 'crud', 'szoveg' => 'CRUD', 'menun' => array(1,1)),
     'uzenetek'     => array('fajl' => 'uzenetek', 'szoveg' => 'Üzenetek', 'menun' => array(1,1)),
-    'bejelentkezes' => array('fajl' => 'belepes', 'szoveg' => 'Bejelentkezés', 'menun' => array(1,0)), 
+    'bejelentkezes' => array('fajl' => 'belep_reg', 'szoveg' => 'Bejelentkezés', 'menun' => array(1,0)), 
     'beleptet'     => array('fajl' => 'beleptet', 'szoveg' => '', 'menun' => array(0,0)), 
     'regisztral'   => array('fajl' => 'regisztral', 'szoveg' => '', 'menun' => array(0,0)), 
     'kijelentkezes' => array('fajl' => 'kilepes', 'szoveg' => 'Kijelentkezés', 'menun' => array(0,1)),
