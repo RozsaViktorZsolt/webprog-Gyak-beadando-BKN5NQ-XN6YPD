@@ -2,7 +2,7 @@
 $host = 'localhost'; 
 $dbname = 'forma_1gyak'; 
 $user = 'forma_1gyak'; 
-$password = 'webprog12.'; 
+$password = 'webprog12'; 
 
 try {
     $dbh = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $password);
