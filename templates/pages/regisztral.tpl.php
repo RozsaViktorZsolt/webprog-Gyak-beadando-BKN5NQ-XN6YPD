@@ -1,6 +1,5 @@
 <?php
 if(isset($_POST['user']) && isset($_POST['pw']) && isset($_POST['csnev']) && isset($_POST['unev'])) {
-    require_once('db.php');
     try {
         $sqlSelect = "SELECT id FROM felhasznalok WHERE bejelentkezes = :login";
         $sth = $dbh->prepare($sqlSelect);
@@ -26,4 +25,4 @@ if(isset($_POST['user']) && isset($_POST['pw']) && isset($_POST['csnev']) && iss
 }
 ?>
 <h3><?= $uzenet ?></h3>
-<a href="?oldal=belepes">Vissza a belépéshez</a>
+<a href="?oldal=bejelentkezes">Vissza a belépéshez</a>
