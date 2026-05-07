@@ -1,32 +1,45 @@
 <?php
-// Adatok lekérése a módosításhoz az ID alapján
-if (isset($_GET['id'])) {
-    $stmt = $dbh->prepare("SELECT * FROM versenyzok WHERE id = ?");
-    $stmt->execute([$_GET['id']]);
-    $adat = $stmt->fetch();
+if (!isset($_SESSION['login'])) {
+    echo "<p class='info-msg'>Ehhez az oldalhoz csak bejelentkezett felhasználók férhetnek hozzá!</p>";
+    return;
+}
+
+try {
+    $sql = "SELECT nev, email, uzenet, datum FROM uzenetek ORDER BY datum DESC";
+    $stmt = $dbh->query($sql);
+    $uzenetek = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    $hiba = "Hiba az üzenetek lekérdezésekor: " . $e->getMessage();
 }
 ?>
 
-<h2>Versenyző szerkesztése</h2>
-<form action="index.php?oldal=crud_update" method="post">
-    <input type="hidden" name="id" value="<?= $adat['id'] ?>">
-    <label>Név: <input type="text" name="nev" value="<?= htmlspecialchars($adat['nev']) ?>"></label><br>
-    <label>Csapat: <input type="text" name="csapat" value="<?= htmlspecialchars($adat['csapat']) ?>"></label><br>
-    <button type="submit">Módosítások mentése</button>
-</form>
-<div style="overflow-x:auto;">
-    <table>
-    <tr>
-        <th>Küldő neve</th>
-        <th>Üzenet</th>
-        <th>Időpont</th>
-    </tr>
-    <?php while ($sor = $stmt->fetch()): ?>
-    <tr>
-        <td><?= empty($sor['nev']) ? "Vendég" : htmlspecialchars($sor['nev']) ?></td>
-        <td><?= htmlspecialchars($sor['uzenet']) ?></td>
-        <td><?= $sor['kuldes_ideje'] ?></td>
-    </tr>
-    <?php endwhile; ?>
-</table>
-</div>
+<section class="messages-container">
+    <h2>Beérkezett üzenetek</h2>
+
+    <?php if (isset($hiba)): ?>
+        <p class="error-msg"><?= $hiba ?></p>
+    <?php elseif (empty($uzenetek)): ?>
+        <p>Nincsenek még beérkezett üzenetek.</p>
+    <?php else: ?>
+        <table class="messages-table">
+            <thead>
+                <tr>
+                    <th>Dátum</th>
+                    <th>Név</th>
+                    <th>E-mail</th>
+                    <th>Üzenet</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($uzenetek as $uz): ?>
+                    <tr>
+                        <td><?= $uz['datum'] ?></td>
+                        <td><?= htmlspecialchars($uz['nev']) ?></td>
+                        <td><?= htmlspecialchars($uz['email']) ?></td>
+                        <td><?= nl2br(htmlspecialchars($uz['uzenet'])) ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php endif; ?>
+</section>

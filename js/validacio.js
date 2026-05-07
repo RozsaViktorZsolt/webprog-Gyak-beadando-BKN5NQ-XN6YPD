@@ -1,29 +1,25 @@
-function validal() {
-    let ok = true;
-    const nev = document.getElementById('nev').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const targy = document.getElementById('targy').value.trim();
-    const szoveg = document.getElementById('szoveg').value.trim();
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+function validateForm() {
+    let nev = document.getElementById('nev').value;
+    let email = document.getElementById('email').value;
+    let uzenet = document.getElementById('uzenet').value;
+    let hibak = [];
 
-    
-    document.querySelectorAll('[id^="error_"]').forEach(el => el.innerHTML = '');
-
-    if (nev.length < 3) {
-        document.getElementById('error_nev').innerHTML = 'A név túl rövid!';
-        ok = false;
+    if (nev.length < 5) {
+        hibak.push("A névnek legalább 5 karakternek kell lennie!");
     }
+
+    let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-        document.getElementById('error_email').innerHTML = 'Érvénytelen e-mail cím!';
-        ok = false;
+        hibak.push("Érvénytelen e-mail cím!");
     }
-    if (targy === '') {
-        document.getElementById('error_targy').innerHTML = 'Adja meg a tárgyat!';
-        ok = false;
+
+    if (uzenet.trim() === "") {
+        hibak.push("Kérjük, írjon be egy üzenetet!");
     }
-    if (szoveg === '') {
-        document.getElementById('error_szoveg').innerHTML = 'Az üzenet nem lehet üres!';
-        ok = false;
+
+    if (hibak.length > 0) {
+        alert(hibak.join("\n"));
+        return false;
     }
-    return ok;
+    return true;
 }
